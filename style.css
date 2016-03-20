@@ -1,0 +1,13 @@
+body {
+  body { font-size: 62.5%; }
+    label, input { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+
+.selectbox {
+  display: inline;}
+
+.divBox {
+	padding-top: 20px;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>SquareOne</title>
+  <style>
+    body { font-size: 62.5%; }
+    input { display:block; }
+    input.text { width:90%; padding: .4em; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div.divBox {padding-top: 10px}
+    div.clearBox {padding-right: 0px;}
+  </style>
+
+</head>
+<body>
+  <p>Welcome to SquareOne.</p>
+  <form>
+      <label for="name">URL</label>
+      <input type="text" name="urlbox" id="url" class="text ui-widget-content ui-corner-all">
+       <div id = "menu" class = divBox>
+       <label for "time">Remove history from: </label>
+        <select id = "time">
+          <option value = "lastHour">Last hour</option>
+          <option value = "lastDay">Last day</option>
+          <option value = "lastWeek">Last week</option>
+          <option value = "last4Weeks">Last 4 weeks</option>
+          <option value = "begin">The beginning of time</option>
+        </select>
+       	<button id="clear" button onclick = "alert('test)" return false;>Clear</button>
+       </div>
+     </form>
+
+  <div id="users-contain" class="ui-widget"></div>
+<script src= 'script.js'></script>
+</body>
+</html>
+<!--
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Recently Typed URLs</title>
+    <style>
+      body {min-width: 250px;}
+    </style>
+    <script src='script.js'></script>
+  </head>
+
+  <body>
+    <h2>Recently Typed URLs:</h2>
+    <div id="typedUrl_div"></div>
+  </body>
+</html>-->

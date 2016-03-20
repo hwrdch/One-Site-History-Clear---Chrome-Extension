@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "SquareOne",
+  "description": "Deletes history for selected site over certain time span.",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Clear history for one site",
+    "default_popup": "SquareOne.html"
+  },
+  "background": {
+    "scripts": ["script.js"]
+  },
+  "permissions": [
+    "history",
+    "cookies",
+    "*://*.google.ro/*"
+  ]
+  
+}
