@@ -11,49 +11,58 @@ hosted app data
 content licenses
 */
 
-//alert('Hello');
 var URL = document.getElementById('url');
 var select = document.getElementById('time');
 var clear = document.getElementById('clear');
 
-/*
+
 function erase()
 {
   var link = URL.value;
-  var date = new Date();
-  var now = date.getTime();
-  var history = this.options[this.selectedIndex].value;
+  var now = (new Date()).getTime();
+  var history = document.getElementById('time').value;
+  
   if (history == 'lastHour')
   {
-      var past = lastHour(now);
-      chrome.history.deleteRange({startTime: past, endTime: now});
-  }
+     var past = lastHour();
+     chrome.history.deleteRange({
+     	'startTime' : past, 
+     	'endTime' : now
+     }, function(){
+     		alert('History from last hour cleared.');
+ 	});
+  }/*
   else if (history == 'lastDay')
   {
-      var past = lastDay(now);
+      var past = lastDay();
       var pastDay = new Date(startTime: past, endTime: now);
   }
   else if (history == 'lastWeek')
   {
-      var past = lastWeek(now);
+      var past = lastWeek();
       var pastWeek = new Date(past, now);
   }  
   else if (history == 'last4Weeks')
   {
-      var past = last4Weeks(now);
+      var past = last4Weeks();
       var past4Weeks = new Date(past, now);
-  }  
+  }  */
   else if (history == 'begin')
   {
-      chrome.history.deleteUrl({'details': url});
+     // chrome.history.deleteUrl({'details': url});
+     chrome.history.deleteAll(function()
+     {
+     	alert('History entirely deleted.');
+     });
   }  
 };
-*/
-clear.addEventListener('click', erase, false);
 
+clear.addEventListener('click', erase, false);
+/*
 function erase()
 {
-  chrome.history.search({
+	alert('here');
+  	chrome.history.search({
         'text' : url.value, // look for visits from stackoverflow
         'startTime' : start,
         'maxResults' : 30
@@ -61,33 +70,28 @@ function erase()
         historyItems.forEach(
           function(item, i) {
           alert(item.title);});
-}
-/*
+}*/
+
 function lastHour() 
 {
-  var now = date.getTime();
-  var past = 1000*60*60;
-  return = now - past;
+  var ms = (new Date()).getTime() - 1000*60*60;
+  return ms;
 }
 
-function lastDay(date)
+function lastDay()
 {
-  var now = date.getTime();
-  var past = 1000*60*60*24;
-  return = now - past;
+  var ms = (new Date()).getTime() - 1000*60*60*24;
+  return ms;
 }
 
-function lastWeek(date)
+function lastWeek()
 {
-  var now = date.getTime();
-  var past = 1000*60*60*24*7;
-  return = now - past;
+  var ms = (new Date()).getTime() - 1000*60*60*24*7;
+  return ms;
 }
 
-function last4Weeks(date)
+function last4Weeks()
 {
-  var now = date.getTime();
-  var past = 1000*60*60*24*28;
-  return = now - past;
+  var ms = (new Date()).getTime() - 1000*60*60*24*7*4;
+  return ms;
 }
-*/
