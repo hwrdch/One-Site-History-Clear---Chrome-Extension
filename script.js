@@ -19,35 +19,37 @@ var clear = document.getElementById('clear');
 function erase()
 {
   var link = URL.value;
-  var ms = 1000*60*60*24;
   var now = (new Date()).getTime();
   var history = document.getElementById('time').value;
   if (history == 'lastHour')
   {
      var past = lastHour();
+
+     //use browsingData API's
+
      chrome.history.deleteUrl({
-     	//'startTime' : past, 
-     	//'endTime' : now,
+     	'startTime' : past, 
+     	'endTime' : now,
      	'url' : link
      }, function(){
      		alert('History from last hour cleared.');
  	});
-  }/*
+  }
   else if (history == 'lastDay')
   {
       var past = lastDay();
-      var pastDay = new Date(startTime: past, endTime: now);
+      //var pastDay = new Date(startTime: past, endTime: now);
   }
   else if (history == 'lastWeek')
   {
       var past = lastWeek();
-      var pastWeek = new Date(past, now);
+      //var pastWeek = new Date(past, now);
   }  
   else if (history == 'last4Weeks')
   {
       var past = last4Weeks();
-      var past4Weeks = new Date(past, now);
-  }  */
+      //var past4Weeks = new Date(past, now);
+  }  
   else if (history == 'begin')
   {
      // chrome.history.deleteUrl({'details': url});
@@ -59,19 +61,6 @@ function erase()
 };
 
 clear.addEventListener('click', erase, false);
-/*
-function erase()
-{
-	alert('here');
-  	chrome.history.search({
-        'text' : url.value, // look for visits from stackoverflow
-        'startTime' : start,
-        'maxResults' : 30
-      }, function(historyItems) {
-        historyItems.forEach(
-          function(item, i) {
-          alert(item.title);});
-}*/
 
 function lastHour() 
 {
