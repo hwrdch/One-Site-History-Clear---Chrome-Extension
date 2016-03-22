@@ -19,15 +19,16 @@ var clear = document.getElementById('clear');
 function erase()
 {
   var link = URL.value;
+  var ms = 1000*60*60*24;
   var now = (new Date()).getTime();
   var history = document.getElementById('time').value;
-  
   if (history == 'lastHour')
   {
      var past = lastHour();
-     chrome.history.deleteRange({
-     	'startTime' : past, 
-     	'endTime' : now
+     chrome.history.deleteUrl({
+     	//'startTime' : past, 
+     	//'endTime' : now,
+     	'url' : link
      }, function(){
      		alert('History from last hour cleared.');
  	});
