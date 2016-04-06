@@ -44,9 +44,8 @@ function erase()
      }, function(histItems){
      		for (i = 0; i < histItems.length; i++)
 			{
-				alert(link);
 
-				if ()
+				/*if ()
 				{
 					alert(histItems[i].url);
 					chrome.history.deleteRange(
@@ -54,7 +53,7 @@ function erase()
 						'startTime' : histItems[i].lastVisitTime,
 						'endTime' : histItems[i].lastVisitTime
 					});
-				}
+				}*/
 			}
 			//alert("History deleted for last hour.");
  	});
