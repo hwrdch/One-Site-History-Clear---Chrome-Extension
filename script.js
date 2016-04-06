@@ -25,14 +25,22 @@ function erase()
   {
      var past = lastHour();
 
-     //use browsingData API's
-
-     chrome.history.deleteUrl({
+    //use browsingData API's
+	//retrieve info
+     chrome.history.search({
+		'text' : link,
      	'startTime' : past, 
      	'endTime' : now,
-     	'url' : link
-     }, function(){
-     		alert('History from last hour cleared.');
+     	//'url' : link
+     }, function(histItems){
+     		for (i = 0; i < histItems.length - 1; i++)
+			{
+				chrome.history.deleteUrl(
+				{
+					'url' : histItems[i].url
+				});
+			}
+			alert("History deleted for last hour.");
  	});
   }
   else if (hist == 'lastDay')
