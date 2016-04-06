@@ -27,20 +27,36 @@ function erase()
 
     //use browsingData API's
 	//retrieve info
+
+	/*chrome.history.getVisits(link, function(visitItems)
+	{
+		for (int i = 0; i < visitItems.length - 1; i++)
+		{
+			alert(visitItems[i].);
+		}
+	});*/
      chrome.history.search({
-		'text' : link,
+		'text' : '',
      	'startTime' : past, 
      	'endTime' : now,
+     	'maxResults' : 10
      	//'url' : link
      }, function(histItems){
-     		for (i = 0; i < histItems.length - 1; i++)
+     		for (i = 0; i < histItems.length; i++)
 			{
-				chrome.history.deleteUrl(
+				alert(link);
+
+				if ()
 				{
-					'url' : histItems[i].url
-				});
+					alert(histItems[i].url);
+					chrome.history.deleteRange(
+					{
+						'startTime' : histItems[i].lastVisitTime,
+						'endTime' : histItems[i].lastVisitTime
+					});
+				}
 			}
-			alert("History deleted for last hour.");
+			//alert("History deleted for last hour.");
  	});
   }
   else if (hist == 'lastDay')
