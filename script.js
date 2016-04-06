@@ -20,8 +20,8 @@ function erase()
 {
   var link = URL.value;
   var now = (new Date()).getTime();
-  var history = document.getElementById('time').value;
-  if (history == 'lastHour')
+  var hist = document.getElementById('time').value;
+  if (hist == 'lastHour')
   {
      var past = lastHour();
 
@@ -35,25 +35,25 @@ function erase()
      		alert('History from last hour cleared.');
  	});
   }
-  else if (history == 'lastDay')
+  else if (hist == 'lastDay')
   {
       var past = lastDay();
       //var pastDay = new Date(startTime: past, endTime: now);
   }
-  else if (history == 'lastWeek')
+  else if (hist == 'lastWeek')
   {
       var past = lastWeek();
       //var pastWeek = new Date(past, now);
   }  
-  else if (history == 'last4Weeks')
+  else if (hist == 'last4Weeks')
   {
       var past = last4Weeks();
       //var past4Weeks = new Date(past, now);
   }  
-  else if (history == 'begin')
+  else if (hist == 'begin')
   {
      // chrome.history.deleteUrl({'details': url});
-     chrome.history.deleteAll(function()
+     chrome.hist.deleteAll(function()
      {
      	alert('History entirely deleted.');
      });
