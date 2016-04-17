@@ -1,6 +1,5 @@
 /*
 Obliterate the following items from: [====]
-
 browsing history
 download history
 cookies and other site and plugin data
@@ -15,75 +14,59 @@ var URL = document.getElementById('url');
 var select = document.getElementById('time');
 var clear = document.getElementById('clear');
 
+clear.addEventListener('click', erase, false);
 
 function erase()
 {
-  var link = URL.value;
+  var link = URL.value;   //this is a substring checked by each URL within range
   var now = (new Date()).getTime();
   var hist = document.getElementById('time').value;
+  var past;
   if (hist == 'lastHour')
   {
-     var past = lastHour();
-
-    //use browsingData API's
-	//retrieve info
-
-	/*chrome.history.getVisits(link, function(visitItems)
-	{
-		for (int i = 0; i < visitItems.length - 1; i++)
-		{
-			alert(visitItems[i].);
-		}
-	});*/
-     chrome.history.search({
-		'text' : '',
-     	'startTime' : past, 
-     	'endTime' : now,
-     	'maxResults' : 10
-     	//'url' : link
-     }, function(histItems){
-     		for (i = 0; i < histItems.length; i++)
-			{
-
-				/*if ()
-				{
-					alert(histItems[i].url);
-					chrome.history.deleteRange(
-					{
-						'startTime' : histItems[i].lastVisitTime,
-						'endTime' : histItems[i].lastVisitTime
-					});
-				}*/
-			}
-			//alert("History deleted for last hour.");
- 	});
+    past = lastHour();
   }
   else if (hist == 'lastDay')
   {
-      var past = lastDay();
-      //var pastDay = new Date(startTime: past, endTime: now);
+    past = lastDay();
   }
   else if (hist == 'lastWeek')
   {
-      var past = lastWeek();
-      //var pastWeek = new Date(past, now);
+    past = lastWeek();
   }  
   else if (hist == 'last4Weeks')
   {
-      var past = last4Weeks();
-      //var past4Weeks = new Date(past, now);
+    past = last4Weeks();
   }  
   else if (hist == 'begin')
   {
-     // chrome.history.deleteUrl({'details': url});
-     chrome.hist.deleteAll(function()
-     {
-     	alert('History entirely deleted.');
-     });
-  }  
-};
+    past = new Date().getTime();
+  } 
+     chrome.history.search({
+      'text' : '',
+      'startTime' : past, 
+      'endTime' : now,
+      'maxResults' : 10000000000
 
-clear.addEventListener('click', erase, false);
+     }, function(histItems){
+        for (i = 0; i < histItems.length; i++)
+        {
+            //alert(histItems[i].url);
+            if (histItems[i].url.indexOf(link) > -1)
+            {
+                alert(histItems[i].title);
+                var start = histItems[i].lastVisitTime - 1;
+                //alert(Date(histItems[i].lastVisitTime).toString());
+                chrome.history.deleteRange({
+                'startTime' : histItems[i].lastVisitTime - 1,
+                'endTime' : histItems[i].lastVisitTime + 1
+                });
+            }
+        }
+        alert("Browsing history cleared.");
+      //alert("History deleted for last hour.");
+    }); 
+};
 
 function lastHour() 
 {
